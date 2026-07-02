@@ -1,0 +1,22 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color camera_blue
+color header_purple
+color image_orange
+color white
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+drawable ingredient_apple
+drawable ingredient_banana
+drawable ingredient_kiwi
+drawable ingredient_lemon
+drawable ingredient_orange
+drawable ingredient_strawberry
+drawable recipe_placeholder
+drawable strawberry_info
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+style Theme.YumLensAI
+xml file_paths

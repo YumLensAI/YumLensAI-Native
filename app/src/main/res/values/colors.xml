@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="header_purple">#FF200A5E</color>
+    <color name="camera_blue">#FF7FAAFF</color>
+    <color name="image_orange">#FFFFAC9D</color>
+</resources>

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(echo \"=== busca por StoredBenchmark em todo o projeto ===\")",
+      "Bash(grep -rl \"StoredBenchmark\" /Users/marco/Public/YumLensAI-Android/app/src)",
+      "Bash(echo \"\")",
+      "Read(//private/tmp/**)",
+      "Bash(echo \"=== conteúdo completo de BenchmarkRecord.kt baixado ===\")"
+    ]
+  }
+}

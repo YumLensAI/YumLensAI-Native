@@ -1,0 +1,54 @@
+[
+    {
+        "merged": "com.yumlensai.app-debug-61:/xml_file_paths.xml.flat",
+        "source": "com.yumlensai.app-main-63:/xml/file_paths.xml"
+    },
+    {
+        "merged": "com.yumlensai.app-debug-61:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.yumlensai.app-main-63:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.yumlensai.app-debug-61:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.yumlensai.app-main-63:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.yumlensai.app-debug-61:/drawable_ingredient_lemon.png.flat",
+        "source": "com.yumlensai.app-main-63:/drawable/ingredient_lemon.png"
+    },
+    {
+        "merged": "com.yumlensai.app-debug-61:/drawable_ingredient_strawberry.png.flat",
+        "source": "com.yumlensai.app-main-63:/drawable/ingredient_strawberry.png"
+    },
+    {
+        "merged": "com.yumlensai.app-debug-61:/drawable_recipe_placeholder.jpg.flat",
+        "source": "com.yumlensai.app-main-63:/drawable/recipe_placeholder.jpg"
+    },
+    {
+        "merged": "com.yumlensai.app-debug-61:/drawable_strawberry_info.png.flat",
+        "source": "com.yumlensai.app-main-63:/drawable/strawberry_info.png"
+    },
+    {
+        "merged": "com.yumlensai.app-debug-61:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.yumlensai.app-main-63:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.yumlensai.app-debug-61:/drawable_ingredient_apple.png.flat",
+        "source": "com.yumlensai.app-main-63:/drawable/ingredient_apple.png"
+    },
+    {
+        "merged": "com.yumlensai.app-debug-61:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.yumlensai.app-main-63:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.yumlensai.app-debug-61:/drawable_ingredient_kiwi.png.flat",
+        "source": "com.yumlensai.app-main-63:/drawable/ingredient_kiwi.png"
+    },
+    {
+        "merged": "com.yumlensai.app-debug-61:/drawable_ingredient_orange.png.flat",
+        "source": "com.yumlensai.app-main-63:/drawable/ingredient_orange.png"
+    },
+    {
+        "merged": "com.yumlensai.app-debug-61:/drawable_ingredient_banana.png.flat",
+        "source": "com.yumlensai.app-main-63:/drawable/ingredient_banana.png"
+    }
+]
