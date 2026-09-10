@@ -49,11 +49,11 @@ object Routes {
 fun YumLensAINavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Routes.BENCHMARK
+        startDestination = Routes.HOME
     ) {
         composable(Routes.BENCHMARK) {
             BenchmarkScreen(
-                onNavigateToHome = { navController.navigate(Routes.HOME) }
+                onNavigateToHome = { navController.popBackStack() }
             )
         }
 

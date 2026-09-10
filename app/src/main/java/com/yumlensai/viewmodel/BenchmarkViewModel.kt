@@ -64,6 +64,8 @@ class BenchmarkViewModel(application: Application) : AndroidViewModel(applicatio
     private val _ramMemory = MutableStateFlow("")
     val ramMemory: StateFlow<String> = _ramMemory.asStateFlow()
 
+    val backendUrl: String = BuildConfig.BACKEND_URL
+
     private val predictModel = PredictModel(application)
     private val testDataset = TestDatasetManager(application)
 

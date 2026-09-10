@@ -102,6 +102,9 @@ dependencies {
     implementation("org.tensorflow:tensorflow-lite:2.14.0")
     implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
 
+    // EXIF orientation reading (camera photos)
+    implementation("androidx.exifinterface:exifinterface:1.3.7")
+
     // Gson
     implementation("com.google.code.gson:gson:2.11.0")
 
