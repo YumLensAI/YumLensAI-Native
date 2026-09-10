@@ -15,6 +15,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Sync
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -69,16 +70,25 @@ fun BenchmarkScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 16.dp),
+                .padding(horizontal = 8.dp, vertical = 16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(
-                text = "YumLensAI Benchmark",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                color = HeaderPurple
-            )
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                IconButton(onClick = onNavigateToHome) {
+                    Icon(
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = "Voltar",
+                        tint = HeaderPurple
+                    )
+                }
+                Text(
+                    text = "YumLensAI Benchmark",
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = HeaderPurple
+                )
+            }
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 if (isSyncing) {
@@ -108,24 +118,26 @@ fun BenchmarkScreen(
 
         Spacer(Modifier.height(8.dp))
 
-        // Device info card
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-                .clip(RoundedCornerShape(12.dp))
-                .background(DeviceInfoBg)
-                .padding(16.dp)
-        ) {
+        // Device info section
+        Column(modifier = Modifier.padding(horizontal = 16.dp)) {
             Text(
                 text = "Informações do Dispositivo",
-                fontSize = 14.sp,
-                fontWeight = FontWeight.SemiBold
+                fontSize = 16.sp,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.padding(bottom = 8.dp)
             )
-            Spacer(Modifier.height(8.dp))
-            DeviceInfoRow(label = "Modelo", value = deviceModel)
-            DeviceInfoRow(label = "Sistema", value = osVersion)
-            DeviceInfoRow(label = "Memória RAM", value = ramMemory)
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(DeviceInfoBg)
+                    .padding(16.dp)
+            ) {
+                DeviceInfoRow(label = "Modelo", value = deviceModel)
+                DeviceInfoRow(label = "Sistema Operacional", value = osVersion)
+                DeviceInfoRow(label = "Memória RAM", value = ramMemory)
+                DeviceInfoRow(label = "Endereço IP do Backend", value = viewModel.backendUrl)
+            }
         }
 
         Spacer(Modifier.height(20.dp))
@@ -133,7 +145,7 @@ fun BenchmarkScreen(
         // Local benchmark card
         Column(modifier = Modifier.padding(horizontal = 16.dp)) {
             Text(
-                text = "Processamento Local",
+                text = "Benchmark",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(bottom = 8.dp)

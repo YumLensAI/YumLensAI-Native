@@ -27,15 +27,17 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.filled.Lightbulb
+import androidx.compose.material.icons.filled.Speed
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -81,7 +83,7 @@ fun HomeScreen(
     val bookmarks by viewModel.bookmarks.collectAsState()
     val isServerUnavailable by viewModel.isServerUnavailable.collectAsState()
 
-    var pendingCameraUri by remember { mutableStateOf<Uri?>(null) }
+    var pendingCameraUri by rememberSaveable { mutableStateOf<Uri?>(null) }
 
     val galleryLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
@@ -127,12 +129,25 @@ fun HomeScreen(
             .background(Color.White)
             .padding(horizontal = 16.dp, vertical = 16.dp)
     ) {
-        Box(modifier = Modifier.padding(vertical = 20.dp)) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 20.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Text(
                 text = "YumLensAI",
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Bold
             )
+            IconButton(onClick = onNavigateToBenchmark) {
+                Icon(
+                    imageVector = Icons.Filled.Speed,
+                    contentDescription = "Benchmark",
+                    tint = GrayText
+                )
+            }
         }
 
         Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
