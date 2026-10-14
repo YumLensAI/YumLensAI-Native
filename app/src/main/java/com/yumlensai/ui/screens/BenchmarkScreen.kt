@@ -16,15 +16,21 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Save
 import androidx.compose.material.icons.filled.Sync
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -57,6 +63,9 @@ fun BenchmarkScreen(
     val deviceModel by viewModel.deviceModel.collectAsState()
     val osVersion by viewModel.osVersion.collectAsState()
     val ramMemory by viewModel.ramMemory.collectAsState()
+    val backendUrl by viewModel.backendUrl.collectAsState()
+    var backendUrlInput by remember { mutableStateOf(backendUrl) }
+    LaunchedEffect(backendUrl) { backendUrlInput = backendUrl }
 
     Column(
         modifier = Modifier
@@ -136,7 +145,39 @@ fun BenchmarkScreen(
                 DeviceInfoRow(label = "Modelo", value = deviceModel)
                 DeviceInfoRow(label = "Sistema Operacional", value = osVersion)
                 DeviceInfoRow(label = "Memória RAM", value = ramMemory)
-                DeviceInfoRow(label = "Endereço IP do Backend", value = viewModel.backendUrl)
+            }
+        }
+
+        Spacer(Modifier.height(20.dp))
+
+        // Backend URL configuration (runtime override, for testing)
+        Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+            Text(
+                text = "Endereço do Backend",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                OutlinedTextField(
+                    value = backendUrlInput,
+                    onValueChange = { backendUrlInput = it },
+                    modifier = Modifier.weight(1f),
+                    singleLine = true,
+                    label = { Text("http://ip:porta") }
+                )
+                IconButton(
+                    onClick = { viewModel.setBackendUrl(backendUrlInput) }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Save,
+                        contentDescription = "Salvar endereço do backend",
+                        tint = HeaderPurple
+                    )
+                }
             }
         }
 

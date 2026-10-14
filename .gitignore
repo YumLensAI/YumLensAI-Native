@@ -14,3 +14,6 @@ app/release/
 *.jks
 *.keystore
 key.properties
+
+# Local environment overrides
+.env

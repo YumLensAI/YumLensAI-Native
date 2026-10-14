@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.yumlensai.BuildConfig
 import com.yumlensai.data.api.model.Bookmark
 import com.yumlensai.data.api.model.StoredBenchmark
 import java.io.File
@@ -14,6 +15,7 @@ object  StorageManager {
     private const val PREFS_NAME = "yumlensai_prefs"
     private const val KEY_BOOKMARKS = "@yumlensai-bookmarks"
     private const val KEY_BENCHMARKS = "@yumlensai-benchmarks"
+    private const val KEY_SERVER_URL = "@yumlensai-server-url"
 
     private val gson = Gson()
 
@@ -88,5 +90,14 @@ object  StorageManager {
             current.removeAt(index)
             prefs(context).edit().putString(KEY_BENCHMARKS, gson.toJson(current)).apply()
         }
+    }
+
+    // ---- Server URL (runtime override, for testing) ----
+
+    fun getServerUrl(context: Context): String =
+        prefs(context).getString(KEY_SERVER_URL, null) ?: BuildConfig.BACKEND_URL
+
+    fun setServerUrl(context: Context, url: String) {
+        prefs(context).edit().putString(KEY_SERVER_URL, url).apply()
     }
 }

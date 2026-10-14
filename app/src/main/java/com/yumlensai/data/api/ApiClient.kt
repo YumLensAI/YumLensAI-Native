@@ -1,6 +1,7 @@
 package com.yumlensai.data.api
 
-import com.yumlensai.BuildConfig
+import android.content.Context
+import com.yumlensai.data.storage.StorageManager
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -9,7 +10,13 @@ import java.util.concurrent.TimeUnit
 
 object ApiClient {
 
-    private val BASE_URL get() = BuildConfig.BACKEND_URL.trimEnd('/') + "/"
+    private lateinit var appContext: Context
+    private var cachedBaseUrl: String? = null
+    private var cachedService: ApiService? = null
+
+    fun init(context: Context) {
+        appContext = context.applicationContext
+    }
 
     private val logging = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
@@ -23,12 +30,18 @@ object ApiClient {
             .build()
     }
 
-    val service: ApiService by lazy {
-        Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .client(httpClient)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(ApiService::class.java)
-    }
+    val service: ApiService
+        get() {
+            val currentUrl = StorageManager.getServerUrl(appContext)
+            if (cachedService == null || cachedBaseUrl != currentUrl) {
+                cachedBaseUrl = currentUrl
+                cachedService = Retrofit.Builder()
+                    .baseUrl(currentUrl.trimEnd('/') + "/")
+                    .client(httpClient)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+                    .create(ApiService::class.java)
+            }
+            return cachedService!!
+        }
 }
